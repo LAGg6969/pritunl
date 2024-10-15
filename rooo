@@ -1,0 +1,21 @@
+# Install MongoDB if running single host configuration
+sudo tee /etc/yum.repos.d/mongodb-org-6.0.repo << EOF
+[mongodb-org-6.0]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/redhat/8/mongodb-org/6.0/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-6.0.asc
+EOF
+
+sudo yum -y install mongodb-org
+sudo systemctl start mongod
+sudo systemctl enable mongod
+
+# Set current pritunl version X.XX.XXXX.XX
+# Set to master to run code from repository (only for testing)
+export VERSION="master"
+
+# RHEL EPEL
+sudo yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+# Oracle Linux EPEL
